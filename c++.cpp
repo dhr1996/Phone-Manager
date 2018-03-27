@@ -5,7 +5,7 @@
 #include<stdlib.h>
 #define M 20
 #define N 12
-class Fphone                          //´æ´¢ÓÃ»§ĞÅÏ¢µÄÀà
+class Fphone                          //å­˜å‚¨ç”¨æˆ·ä¿¡æ¯çš„ç±»
 {
 private:
 	char name[M];
@@ -19,7 +19,7 @@ public:
 		return p;   
 	}
 
-	char *getphone_num()              //´«µİÖ¸ÕëµÄº¯Êı
+	char *getphone_num()              //ä¼ é€’æŒ‡é’ˆçš„å‡½æ•°
 	{
 		char *p;
 		p=phone_num;
@@ -49,12 +49,12 @@ private:
 public:
 	UserDatabase(int n)
 	{
-		user=new Fphone[50];            //¸øÀàµÄÖ¸ÕëÉêÇë¿Õ¼ä
-	    char name[M],phone_num[N];
+		user=new Fphone[50];            //ç»™ç±»çš„æŒ‡é’ˆç”³è¯·ç©ºé—´
+	    	char name[M],phone_num[N];
 		fstream in;
 		int i=0;
 		in.open("user.txt",ios::in|ios::nocreate);               
-		while(in>>name>>phone_num)               // ¶ÁÈ¡ÎÄ¼şÄÚÈİ
+		while(in>>name>>phone_num)               // è¯»å–æ–‡ä»¶å†…å®¹
 		{
 			user[i].setname(name);
 			user[i].setphone_num(phone_num);
@@ -62,7 +62,7 @@ public:
 		}
 		nElem=i;
 		in.close();
-		cout<<"ÁªÏµÈË×ÜÊı:"<<nElem<<endl;
+		cout<<"è”ç³»äººæ€»æ•°:"<<nElem<<endl;
 	}
 	~UserDatabase()
 	{
@@ -85,38 +85,38 @@ public:
 		strcpy(phone_num,"");
 		for(i=0;i<nElem;i++)
 		{
-            user[i].setname(name);
-			user[i].setphone_num(phone_num);                //É¾³ıĞÅÏ¢ÎÒÖ±½Ó¸³µÄ¿Õ×Ö·û
+            		user[i].setname(name);
+			user[i].setphone_num(phone_num);                //åˆ é™¤ä¿¡æ¯æˆ‘ç›´æ¥èµ‹çš„ç©ºå­—ç¬¦
 		}
-		                                                          //Îö¹¹Ê±Ğ´Èë¿Õ×Ö·û
+		                                                          //ææ„æ—¶å†™å…¥ç©ºå­—ç¬¦
 	}
 	void add_record(char *na)
 	{
 		int i;
-		for(i=0;i<nElem;i++)                           //ÅĞ¶ÏÓÃ»§ÊÇ·ñÒÑ´æÔÚ
+		for(i=0;i<nElem;i++)                           //åˆ¤æ–­ç”¨æˆ·æ˜¯å¦å·²å­˜åœ¨
 		{
 			if(strcmp(user[i].getname(),na)==0)
 			{
-				cout<<"¸ÃÓÃ»§ÒÑ´æÔÚÌí¼ÓÊ§°Ü"<<endl;
-			    return;
+				cout<<"è¯¥ç”¨æˆ·å·²å­˜åœ¨æ·»åŠ å¤±è´¥"<<endl;
+			    	return;
 			}
 		}
 	    user[nElem].setname(na);
-		cout<<"ÊäÈëÓÃ»§µÄµç»°ºÅÂë:"<<endl;
+		cout<<"è¾“å…¥ç”¨æˆ·çš„ç”µè¯å·ç :"<<endl;
 		char *phone_num,p[N];
 		cin>>p;
 		phone_num=p;
 		user[nElem].setphone_num(phone_num);
 		nElem++;
 	}
-    void delete_record(char *na)                     //É¾³ı¹¦ÄÜ£ºÓÃºóÃæ¸²¸Ç
+    void delete_record(char *na)                     //åˆ é™¤åŠŸèƒ½ï¼šç”¨åé¢è¦†ç›–
 	{
 		int i,j;
 		char *t,sure[4];
 		for(i=0;i<nElem;i++)  
 			if(strcmp(user[i].getname(),na)==0)
 		   {	
-				cout<<"ÊäÈëyesÈ·¶¨É¾³ı"<<endl;
+				cout<<"è¾“å…¥yesç¡®å®šåˆ é™¤"<<endl;
 				cin>>sure;
 				if(strcmp(sure,"yes")==0)
 				{
@@ -130,27 +130,27 @@ public:
 				}
 				else return;
 		   }
-			cout<<"²»´æÔÚ´ËÓÃ»§"<<endl;
+			cout<<"ä¸å­˜åœ¨æ­¤ç”¨æˆ·"<<endl;
 	}
 
 
-    void modify_record(char *na)                       //ĞŞ¸Ä¹¦ÄÜ
+    void modify_record(char *na)                       //ä¿®æ”¹åŠŸèƒ½
 	{
 		int i;
 		char phone_num[N],*p;
 		for(i=0;i<nElem;i++)  
 			if(strcmp(user[i].getname(),na)==0)
 			{
-				cout<<"Ô­ÓĞºÅÂë"<<user[i].getphone_num()<<endl;
-				cout<<"ÊäÈëĞÂºÅÂë"<<endl;
+				cout<<"åŸæœ‰å·ç "<<user[i].getphone_num()<<endl;
+				cout<<"è¾“å…¥æ–°å·ç "<<endl;
 				cin>>phone_num;
 				p=phone_num;
 				user[i].setphone_num(p);
 				return;
 			}
-		cout<<"¸ÃÓÃ»§²»´æÔÚ"<<endl;
+		cout<<"è¯¥ç”¨æˆ·ä¸å­˜åœ¨"<<endl;
 	}		
-	void query(char *na)                              //²éÕÒÁªÏµÈËº¯Êı
+	void query(char *na)                              //æŸ¥æ‰¾è”ç³»äººå‡½æ•°
 	{
 		int i;
 		for(i=0;i<nElem;i++)                       
@@ -161,10 +161,10 @@ public:
 				return;
 			}
 		}
-		cout<<"¸ÃÓÃ»§²»´æÔÚ"<<endl;
+		cout<<"è¯¥ç”¨æˆ·ä¸å­˜åœ¨"<<endl;
 	}
 
-    void sorta_name()                    //°´ĞÕÃûÉıĞòÅÅĞò                //´Ë´¦ÎÒÓÃÁËÑ¡Ôñ·¨Ã»ÓÃ²åÈë·¨
+    void sorta_name()                    //æŒ‰å§“åå‡åºæ’åº                //æ­¤å¤„æˆ‘ç”¨äº†é€‰æ‹©æ³•æ²¡ç”¨æ’å…¥æ³•
 	{
 		int i,j,p;
 		char t[N];
@@ -188,7 +188,7 @@ public:
 				}
 			}
 	}
-	void sorta_phonenum()                       //°´ºÅÂëÉıĞòÅÅĞòÑ¡Ôñ·¨
+	void sorta_phonenum()                       //æŒ‰å·ç å‡åºæ’åºé€‰æ‹©æ³•
 	{
 		int i,j,p;
 		char t[N];
@@ -201,7 +201,7 @@ public:
 					p=j;
 					if(p!=i)
 					{
-						strcpy(t,user[i].getname());                    //ÊµÏÖÁ½¸ö×Ö·û´®µÄ½»»»
+						strcpy(t,user[i].getname());                    //å®ç°ä¸¤ä¸ªå­—ç¬¦ä¸²çš„äº¤æ¢
 						user[i].setname(user[p].getname());
 						user[p].setname(t);
 						strcpy(t,user[i].getphone_num());
@@ -212,7 +212,7 @@ public:
 				}
 			}
 	}
-	void sort_name()                         //°´ĞÕÃû½µĞòÅÅĞò
+	void sort_name()                         //æŒ‰å§“åé™åºæ’åº
 	{
 		int i;
 		char t[N];
@@ -227,7 +227,7 @@ public:
 			user[nElem-i-1].setphone_num(t);
 		}
 	}
-	void sort_phonenum()           //ºÅÂë½µĞòÃ°Åİ
+	void sort_phonenum()           //å·ç é™åºå†’æ³¡
 	{
 		int i,j;
 		char t[N];
@@ -245,7 +245,7 @@ public:
 				}
 			}
 	}
-	void dispall()                       //ÏÔÊ¾¹¦ÄÜ
+	void dispall()                       //æ˜¾ç¤ºåŠŸèƒ½
 	{
 		int i;
 		for(i=0;i<nElem;i++)
@@ -257,16 +257,16 @@ public:
 
 void main()
 {
-	UserDatabase mydata(6);     //Ó¦¸Ã¶¨ÒåÒ»¸öUserDatabase¶ÔÏó
+	UserDatabase mydata(6);     //åº”è¯¥å®šä¹‰ä¸€ä¸ªUserDatabaseå¯¹è±¡
 	int x;                           
-	cout<<"ÇëÑ¡ÔñÒÔÏÂ¹¦ÄÜ"<<endl<<"1-Ôö¼Ó¼ÇÂ¼"<<endl<<"2-ĞŞ¸Ä¼ÇÂ¼"<<endl<<"3-É¾³ı¼ÇÂ¼"<<endl<<"4-²éÕÒ£¨°´ĞÕÃû£©"<<endl<<"5-ÅÅĞò"<<endl<<"6-ÏÔÊ¾¼ÇÂ¼"<<endl<<"7-È«É¾"<<endl<<"0-ÍË³ö"<<endl;
+	cout<<"è¯·é€‰æ‹©ä»¥ä¸‹åŠŸèƒ½"<<endl<<"1-å¢åŠ è®°å½•"<<endl<<"2-ä¿®æ”¹è®°å½•"<<endl<<"3-åˆ é™¤è®°å½•"<<endl<<"4-æŸ¥æ‰¾ï¼ˆæŒ‰å§“åï¼‰"<<endl<<"5-æ’åº"<<endl<<"6-æ˜¾ç¤ºè®°å½•"<<endl<<"7-å…¨åˆ "<<endl<<"0-é€€å‡º"<<endl;
     cin>>x;
 	if(x==1)
 	{
 		system("cls");
-		cout<<"*********************************"<<endl<<"           Ôö¼Ó¼ÇÂ¼"<<endl<<"*********************************"<<endl;
+		cout<<"*********************************"<<endl<<"           å¢åŠ è®°å½•"<<endl<<"*********************************"<<endl;
 		char name1[M];
-		cout<<"1-Ôö¼Ó¼ÇÂ¼²Ëµ¥"<<endl<<"ÇëÊäÈë¸ÃÓÃ»§ĞÕÃûºÍµç»°ºÅÂë"<<endl;
+		cout<<"1-å¢åŠ è®°å½•èœå•"<<endl<<"è¯·è¾“å…¥è¯¥ç”¨æˆ·å§“åå’Œç”µè¯å·ç "<<endl;
 		cin>>name1;
 		mydata.add_record(name1);
 	}
@@ -274,8 +274,8 @@ void main()
 	{
 		system("cls");
 		char name2[M];
-		cout<<"*********************************"<<endl<<"           ĞŞ¸Ä¼ÇÂ¼"<<endl<<"*********************************"<<endl;
-		cout<<"ÇëÊäÈëÓÃ»§ĞÕÃû:"<<endl;
+		cout<<"*********************************"<<endl<<"           ä¿®æ”¹è®°å½•"<<endl<<"*********************************"<<endl;
+		cout<<"è¯·è¾“å…¥ç”¨æˆ·å§“å:"<<endl;
 		cin>>name2;
 		mydata.modify_record(name2);
 		
@@ -283,11 +283,11 @@ void main()
     else if(x==3)
 	{
 		system("cls");
-		cout<<"*********************************"<<endl<<"           É¾³ı¼ÇÂ¼"<<endl<<"*********************************"<<endl;
-		cout<<"ÇëÊäÈëÓÃ»§ĞÕÃû:"<<endl;
+		cout<<"*********************************"<<endl<<"           åˆ é™¤è®°å½•"<<endl<<"*********************************"<<endl;
+		cout<<"è¯·è¾“å…¥ç”¨æˆ·å§“å:"<<endl;
 		char name3[M];
 		cin>>name3;
-	    mydata.delete_record(name3);
+	    	mydata.delete_record(name3);
 	}
 
 
@@ -295,8 +295,8 @@ void main()
 	{
 		system("cls");
 		char name4[M];
-		cout<<"*********************************"<<endl<<"           ²éÑ¯¼ÇÂ¼"<<endl<<"*********************************"<<endl;
-		cout<<"ÊäÈëÓÃ»§ĞÕÃû"<<endl<<"½øĞĞ²éÕÒ";
+		cout<<"*********************************"<<endl<<"           æŸ¥è¯¢è®°å½•"<<endl<<"*********************************"<<endl;
+		cout<<"è¾“å…¥ç”¨æˆ·å§“å"<<endl<<"è¿›è¡ŒæŸ¥æ‰¾";
 		cin>>name4;
 		mydata.query(name4);
 	}
@@ -304,7 +304,7 @@ void main()
     else if(x==5)
 	{
 		system("cls");
-		cout<<"ÇëÑ¡ÔñÅÅĞò·½Ê½"<<endl<<"1-°´ĞÕÃû(ÉıĞò)"<<endl<<"2-°´µç»°ºÅÂë(ÉıĞò)"<<endl<<"3-°´ĞÕÃû(½µĞò)"<<endl<<"4-°´µç»°ºÅÂë(½µĞò)"<<endl<<"ÇëÊäÈëÑ¡Ôñ:";
+		cout<<"è¯·é€‰æ‹©æ’åºæ–¹å¼"<<endl<<"1-æŒ‰å§“å(å‡åº)"<<endl<<"2-æŒ‰ç”µè¯å·ç (å‡åº)"<<endl<<"3-æŒ‰å§“å(é™åº)"<<endl<<"4-æŒ‰ç”µè¯å·ç (é™åº)"<<endl<<"è¯·è¾“å…¥é€‰æ‹©:";
 		int m;
 		cin>>m;
 		if(m==1)
@@ -319,15 +319,15 @@ void main()
 	else if(x==6)
 	{
 		system("cls");
-		cout<<"*********************************"<<endl<<"           ÏÔÊ¾¼ÇÂ¼"<<endl<<"*********************************"<<endl;
+		cout<<"*********************************"<<endl<<"           æ˜¾ç¤ºè®°å½•"<<endl<<"*********************************"<<endl;
 		mydata.dispall();
 	}
 	else if(x==7)
 	{
 		system("cls");
-		cout<<"*********************************"<<endl<<"           È«²¿É¾³ı¼ÇÂ¼"<<endl<<"*********************************"<<endl;
+		cout<<"*********************************"<<endl<<"           å…¨éƒ¨åˆ é™¤è®°å½•"<<endl<<"*********************************"<<endl;
 		char shanchu[10];
-		cout<<"ÊäÈëyesÈ·ÈÏÉ¾³ı"<<endl;
+		cout<<"è¾“å…¥yesç¡®è®¤åˆ é™¤"<<endl;
 		cin>>shanchu;
 		if(strcmp(shanchu,"yes")==0)
 		mydata.clear();
